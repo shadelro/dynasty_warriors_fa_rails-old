@@ -7,14 +7,19 @@ class ApplicationController < ActionController::Base
   helper_method :user_signed_in?
   helper_method :correct_user?
 
+  # delete when signin is working
+  def current_user
+    User.find_by_email('rbshadel@gmail.com')
+  end
+
   private
-    def current_user
-      begin
-        @current_user ||= User.find(session[:user_id]) if session[:user_id]
-      rescue Exception => e
-        nil
-      end
-    end
+    # def current_user
+    #   begin
+    #     @current_user ||= User.find(session[:user_id]) if session[:user_id]
+    #   rescue Exception => e
+    #     nil
+    #   end
+    # end
 
     def user_signed_in?
       return true if current_user
